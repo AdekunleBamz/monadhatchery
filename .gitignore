@@ -1,0 +1,21 @@
+# Node
+node_modules/
+.env
+.DS_Store
+
+# Frontend
+.next/
+build/
+dist/
+
+# Contracts
+artifacts/
+cache/
+coverage/
+
+# Logs
+*.log
+
+# Misc
+.idea/
+.vscode/ 
