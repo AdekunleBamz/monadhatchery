@@ -9,11 +9,20 @@ export const fetchUserMonanimals = async (address: string) => {
 };
 
 export const mintMonanimal = async (address: string) => {
-  const response = await fetch(`${API_BASE_URL}/users/${address}/mint`, {
+  // Generate dummy data for now
+  const payload = {
+    tokenId: Math.floor(Math.random() * 1000000), // unique ID for demo
+    owner: address,
+    traits: 'default:default', // placeholder traits
+    lore: 'A newly minted Monanimal', // placeholder lore
+  };
+
+  const response = await fetch(`${API_BASE_URL}/monanimal/mint`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(payload),
   });
   if (!response.ok) {
     throw new Error('Failed to mint monanimal');
