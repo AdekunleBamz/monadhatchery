@@ -1,0 +1,77 @@
+2025-06-25T09:11:32.000754Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2025-06-25T09:11:32.002532Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "C:\\Users\\Bamsk\\MonadHatchery\\frontend", pattern: "**/*", negated: false }
+2025-06-25T09:11:32.005178Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2025-06-25T09:11:32.005288Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "C:\\Users\\Bamsk\\MonadHatchery\\frontend" }
+2025-06-25T09:11:32.015273Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.025114Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\eslint.config.mjs"
+2025-06-25T09:11:32.025706Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\next.config.ts"
+2025-06-25T09:11:32.026277Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\package.json"
+2025-06-25T09:11:32.026398Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\postcss.config.mjs"
+2025-06-25T09:11:32.026630Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public"
+2025-06-25T09:11:32.026914Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\file.svg"
+2025-06-25T09:11:32.027064Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\globe.svg"
+2025-06-25T09:11:32.027245Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\next.svg"
+2025-06-25T09:11:32.027372Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\vercel.svg"
+2025-06-25T09:11:32.027498Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\window.svg"
+2025-06-25T09:11:32.027727Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\README.md"
+2025-06-25T09:11:32.027919Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src"
+2025-06-25T09:11:32.028213Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app"
+2025-06-25T09:11:32.028442Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app\\globals.css"
+2025-06-25T09:11:32.028535Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app\\layout.tsx"
+2025-06-25T09:11:32.028627Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app\\page.tsx"
+2025-06-25T09:11:32.028847Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\components"
+2025-06-25T09:11:32.029055Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\components\\WalletConnect.tsx"
+2025-06-25T09:11:32.029268Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\services"
+2025-06-25T09:11:32.029463Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\services\\api.ts"
+2025-06-25T09:11:32.029645Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\tsconfig.json"
+2025-06-25T09:11:32.029881Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.029903Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.029918Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.029924Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 15 file(s)
+2025-06-25T09:11:32.032217Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\components\\WalletConnect.tsx"
+2025-06-25T09:11:32.032404Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app\\page.tsx"
+2025-06-25T09:11:32.032255Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app\\layout.tsx"
+2025-06-25T09:11:32.032605Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\package.json"
+2025-06-25T09:11:32.032265Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\next.config.ts"
+2025-06-25T09:11:32.032764Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\eslint.config.mjs"
+2025-06-25T09:11:32.032217Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\postcss.config.mjs"
+2025-06-25T09:11:32.032830Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\README.md"
+2025-06-25T09:11:32.032602Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\tsconfig.json"
+2025-06-25T09:11:32.032430Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\services\\api.ts"
+2025-06-25T09:11:32.034082Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\window.svg"
+2025-06-25T09:11:32.034436Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\file.svg"
+2025-06-25T09:11:32.050007Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\vercel.svg"
+2025-06-25T09:11:32.051470Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\globe.svg"
+2025-06-25T09:11:32.051557Z  INFO tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public\\next.svg"
+2025-06-25T09:11:32.052497Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.052562Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.052587Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.055157Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.055321Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.055365Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.055382Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-06-25T09:11:32.056018Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app\\globals.css"
+2025-06-25T09:11:32.056067Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.056089Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.056109Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.056427Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.056500Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.058448Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.059845Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.059922Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.064228Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public"
+2025-06-25T09:11:32.064986Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src"
+2025-06-25T09:11:32.065280Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app"
+2025-06-25T09:11:32.065835Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\components"
+2025-06-25T09:11:32.066176Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\services"
+2025-06-25T09:11:32.066633Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.066900Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.067186Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.067314Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: enter
+2025-06-25T09:11:32.075232Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\public"
+2025-06-25T09:11:32.077251Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src"
+2025-06-25T09:11:32.078273Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\app"
+2025-06-25T09:11:32.079733Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\components"
+2025-06-25T09:11:32.080865Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\Users\\Bamsk\\MonadHatchery\\frontend\\src\\services"
+2025-06-25T09:11:32.082000Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: exit
+2025-06-25T09:11:32.095942Z  INFO get_globs: tailwindcss_oxide::scanner: exit
