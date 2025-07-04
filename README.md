@@ -19,9 +19,6 @@ Monad Hatchery is a novel NFT project for the Monad Mission 5 competition. It co
 - IPFS/Pinata for NFT storage
 - MongoDB/PostgreSQL for leaderboard and progress tracking
 
-## Wallet for Deployment
-`0x7C98ab80D060cA57DD067712d0eD084A58f69c49`
-
 ## Open Source
 All code and assets are open source for the competition.
 
