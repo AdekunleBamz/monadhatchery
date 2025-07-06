@@ -1,14 +1,33 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import User from './models/User.js';
 import Monanimal from './models/Monanimal.js';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// Debug: Check if .env file exists
+const envPath = join(__dirname, '..', '.env');
+console.log('Looking for .env file at:', envPath);
+console.log('File exists:', fs.existsSync(envPath));
+
+if (fs.existsSync(envPath)) {
+  console.log('File contents:');
+  console.log(fs.readFileSync(envPath, 'utf8'));
+}
+
+// Load environment variables from .env file
+const result = dotenv.config({ path: envPath });
+console.log('Dotenv result:', result);
+
+console.log('Environment variables loaded:');
+console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'SET' : 'NOT SET');
+console.log('PORT:', process.env.PORT);
 
 const app = express();
 const PORT = process.env.PORT || 4001;
@@ -18,11 +37,28 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://bamzzstudio:keZYWZ24TnXllSCM@datapulse1.ne9hfar.mongodb.net/monad-hatchery?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI;
 
+if (!MONGODB_URI) {
+  console.error('MONGODB_URI environment variable is not set');
+  console.error('Current working directory:', process.cwd());
+  process.exit(1);
+}
+
+// MongoDB connection (removed deprecated options)
 mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB Atlas'))
-  .catch(err => console.error('MongoDB connection error:', err));
+.then(() => {
+  console.log('Connected to MongoDB Atlas');
+  console.log('Database:', mongoose.connection.name);
+})
+.catch(err => {
+  console.error('MongoDB connection error:', err);
+  console.error('Please check:');
+  console.error('1. Your IP is whitelisted in MongoDB Atlas');
+  console.error('2. Your connection string is correct');
+  console.error('3. Your network connection is stable');
+  process.exit(1);
+});
 
 // MonanimalNFT contract address and Monad testnet RPC
 const MONANIMAL_NFT_ADDRESS = process.env.MONANIMAL_NFT_ADDRESS || "0x5e0F9e74f5Aa1CaD3EE7D4C734F7dDF0c816e456";
