@@ -21,7 +21,7 @@ contract Fusion is Ownable {
         monanimalNFT.transferFrom(msg.sender, address(0xdead), tokenId1);
         monanimalNFT.transferFrom(msg.sender, address(0xdead), tokenId2);
         // Mint new rare Monanimal
-        monanimalNFT.mint(msg.sender, newTraits, newLore, newTokenURI);
+        monanimalNFT.mint(newTraits, newLore, newTokenURI);
         uint256 newTokenId = monanimalNFT.nextTokenId() - 1;
         emit MonanimalsFused(msg.sender, tokenId1, tokenId2, newTokenId, newTraits, newLore);
     }
