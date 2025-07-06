@@ -156,10 +156,29 @@ app.get('/api/metadata/:tokenId', async (req, res) => {
 // Record NFT mint
 app.post('/api/monanimal/mint', async (req, res) => {
   try {
-    const { tokenId, owner, traits, lore } = req.body;
+    const { tokenId, owner, traits: incomingTraits, lore } = req.body;
     const name = `Monanimal #${tokenId}`;
     const level = 1;
     const type = 'Normal';
+
+    function randomTrait(traitType, options) {
+      return `${traitType}:${options[Math.floor(Math.random() * options.length)]}`;
+    }
+
+    const traitOptions = {
+      color: ['Red', 'Blue', 'Green', 'Yellow', 'Purple'],
+      type: ['Fire', 'Water', 'Earth', 'Mystic', 'Air'],
+      ability: ['Swift', 'Strong', 'Clever', 'Brave', 'Stealthy'],
+    };
+
+    let traits = incomingTraits;
+    if (!traits) {
+      traits = [
+        randomTrait('color', traitOptions.color),
+        randomTrait('type', traitOptions.type),
+        randomTrait('ability', traitOptions.ability),
+      ].join(',');
+    }
 
     // Generate SVG and encode as data URL
     const svg = generateMonanimalSVG({ traits, tokenId });
@@ -236,6 +255,71 @@ app.get('/api/monanimals/random', async (req, res) => {
       return res.status(404).json({ error: 'No Monanimals found' });
     }
     res.json(monanimal);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Fusion endpoint: User selects traits to inherit
+app.post('/api/monanimal/fuse', async (req, res) => {
+  try {
+    const { parentAId, parentBId, owner, selectedTraits } = req.body;
+    const parentA = await Monanimal.findOne({ tokenId: Number(parentAId) });
+    const parentB = await Monanimal.findOne({ tokenId: Number(parentBId) });
+
+    if (!parentA || !parentB) {
+      return res.status(404).json({ error: 'One or both parent Monanimals not found' });
+    }
+
+    // selectedTraits is an object, e.g. { color: "Red", type: "Fire", ability: "Swift" }
+    const fusedTraits = Object.entries(selectedTraits)
+      .map(([key, value]) => `${key}:${value}`)
+      .join(',');
+
+    const newTokenId = (await Monanimal.find().sort({ tokenId: -1 }).limit(1))[0]?.tokenId + 1 || 1;
+    const name = `Monanimal #${newTokenId}`;
+    const level = 1;
+    const type = 'Normal';
+    const lore = `Fused from #${parentAId} and #${parentBId}`;
+
+    // Generate SVG and encode as data URL
+    const svg = generateMonanimalSVG({ traits: fusedTraits, tokenId: newTokenId });
+    const image = svgToDataUrl(svg);
+
+    const fusedMonanimal = await Monanimal.create({
+      tokenId: newTokenId,
+      owner: owner.toLowerCase(),
+      name,
+      traits: fusedTraits,
+      lore,
+      level,
+      type,
+      experience: 0,
+      image,
+    });
+
+    await User.findOneAndUpdate(
+      { address: owner.toLowerCase() },
+      { $push: { monanimals: newTokenId } },
+      { new: true, upsert: true }
+    );
+
+    res.json(fusedMonanimal);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Preview endpoint for fusion (returns SVG image for selected traits)
+app.post('/api/monanimal/preview', async (req, res) => {
+  try {
+    const { selectedTraits, tokenId } = req.body;
+    const traits = Object.entries(selectedTraits)
+      .map(([key, value]) => `${key}:${value}`)
+      .join(',');
+    const svg = generateMonanimalSVG({ traits, tokenId });
+    const image = svgToDataUrl(svg);
+    res.json({ image });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
