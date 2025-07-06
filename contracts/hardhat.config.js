@@ -10,8 +10,8 @@ module.exports = {
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },
     monad: {
-      url: process.env.MONAD_TESTNET_RPC_URL || "https://testnet-rpc.monad.xyz",
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      url: process.env.MONAD_TESTNET_RPC_URL, // e.g. "https://testnet-rpc.monad.xyz"
+      accounts: [process.env.PRIVATE_KEY]
     },
   },
 };

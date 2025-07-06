@@ -79,12 +79,9 @@ function renderAccessory(accessory) {
 }
 
 export function generateMonanimalSVG({ traits, tokenId }) {
-  // Use traits or tokenId as seed for uniqueness
-  const seed = traits ? traits : `monanimal-${tokenId}`;
-  const svg = createAvatar(bottts, {
-    seed,
-    // You can add more options here for customization
-  }).toString();
+  // Use a unique seed for each NFT: combine tokenId and traits
+  const seed = `${tokenId}-${traits}`;
+  const svg = createAvatar(bottts, { seed }).toString();
   return svg;
 }
 

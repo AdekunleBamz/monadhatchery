@@ -128,15 +128,19 @@ app.get('/api/metadata/:tokenId', async (req, res) => {
       return res.status(404).json({ error: 'Monanimal not found' });
     }
 
-    // Use the image from the DB, or a placeholder if not set
-    const imageUrl = monanimal.image && monanimal.image.trim() !== ''
-      ? monanimal.image
-      : `https://placehold.co/400x400?text=Monanimal+${monanimal.tokenId}`;
+    // If image is missing, regenerate and save it
+    let image = monanimal.image;
+    if (!image || image.trim() === '') {
+      const svg = generateMonanimalSVG({ traits: monanimal.traits, tokenId: monanimal.tokenId });
+      image = svgToDataUrl(svg);
+      monanimal.image = image;
+      await monanimal.save();
+    }
 
     res.json({
       name: monanimal.name,
       description: monanimal.lore,
-      image: imageUrl,
+      image,
       attributes: [
         { trait_type: "Level", value: monanimal.level },
         { trait_type: "Type", value: monanimal.type },
@@ -157,8 +161,15 @@ app.post('/api/monanimal/mint', async (req, res) => {
     const level = 1;
     const type = 'Normal';
 
+    // Generate SVG and encode as data URL
     const svg = generateMonanimalSVG({ traits, tokenId });
     const image = svgToDataUrl(svg);
+
+    // Only create if it doesn't exist
+    const existing = await Monanimal.findOne({ tokenId });
+    if (existing) {
+      return res.status(400).json({ error: 'Token already exists' });
+    }
 
     const monanimal = await Monanimal.create({
       tokenId,
