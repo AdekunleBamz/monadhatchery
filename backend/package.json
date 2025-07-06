@@ -13,8 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dicebear/collection": "^9.2.3",
+    "@dicebear/core": "^9.2.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "ethers": "^6.15.0",
     "express": "^4.18.3",
     "mongoose": "^8.2.1",
     "node-fetch": "^3.3.2"

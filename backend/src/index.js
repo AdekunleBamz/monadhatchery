@@ -8,6 +8,7 @@ import User from './models/User.js';
 import Monanimal from './models/Monanimal.js';
 import fs from 'fs';
 import { generateMonanimalSVG, svgToDataUrl } from './utils/monanimalSVG.js';
+import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -64,6 +65,12 @@ mongoose.connect(MONGODB_URI)
 // MonanimalNFT contract address and Monad testnet RPC
 const MONANIMAL_NFT_ADDRESS = process.env.MONANIMAL_NFT_ADDRESS || "0x5e0F9e74f5Aa1CaD3EE7D4C734F7dDF0c816e456";
 const MONAD_RPC_URL = process.env.MONAD_RPC_URL || "https://testnet-rpc.monad.xyz";
+
+// Helper to get all animal image filenames
+function getAnimalImages() {
+  const dir = path.join(__dirname, '../../frontend/public/monanimals');
+  return fs.readdirSync(dir).filter(f => f.endsWith('.png') || f.endsWith('.svg'));
+}
 
 // API Routes
 
@@ -150,8 +157,7 @@ app.post('/api/monanimal/mint', async (req, res) => {
     const level = 1;
     const type = 'Normal';
 
-    // Auto-generate SVG and encode as data URL
-    const svg = generateMonanimalSVG({ name, traits, level, type });
+    const svg = generateMonanimalSVG({ traits, tokenId });
     const image = svgToDataUrl(svg);
 
     const monanimal = await Monanimal.create({
@@ -204,6 +210,21 @@ app.get('/api/users/:address/monanimals', async (req, res) => {
     const { address } = req.params;
     const monanimals = await Monanimal.find({ owner: address.toLowerCase() });
     res.json(monanimals);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get a random Monanimal
+app.get('/api/monanimals/random', async (req, res) => {
+  try {
+    const count = await Monanimal.countDocuments();
+    const random = Math.floor(Math.random() * count);
+    const monanimal = await Monanimal.findOne().skip(random);
+    if (!monanimal) {
+      return res.status(404).json({ error: 'No Monanimals found' });
+    }
+    res.json(monanimal);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
