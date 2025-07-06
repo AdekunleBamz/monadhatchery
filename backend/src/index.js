@@ -7,6 +7,7 @@ import cors from 'cors';
 import User from './models/User.js';
 import Monanimal from './models/Monanimal.js';
 import fs from 'fs';
+import { generateMonanimalSVG, svgToDataUrl } from './utils/monanimalSVG.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -120,7 +121,22 @@ app.get('/api/metadata/:tokenId', async (req, res) => {
       return res.status(404).json({ error: 'Monanimal not found' });
     }
 
-    res.json(monanimal);
+    // Use the image from the DB, or a placeholder if not set
+    const imageUrl = monanimal.image && monanimal.image.trim() !== ''
+      ? monanimal.image
+      : `https://placehold.co/400x400?text=Monanimal+${monanimal.tokenId}`;
+
+    res.json({
+      name: monanimal.name,
+      description: monanimal.lore,
+      image: imageUrl,
+      attributes: [
+        { trait_type: "Level", value: monanimal.level },
+        { trait_type: "Type", value: monanimal.type },
+        { trait_type: "Experience", value: monanimal.experience },
+        // Add more traits as needed
+      ]
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -131,6 +147,12 @@ app.post('/api/monanimal/mint', async (req, res) => {
   try {
     const { tokenId, owner, traits, lore } = req.body;
     const name = `Monanimal #${tokenId}`;
+    const level = 1;
+    const type = 'Normal';
+
+    // Auto-generate SVG and encode as data URL
+    const svg = generateMonanimalSVG({ name, traits, level, type });
+    const image = svgToDataUrl(svg);
 
     const monanimal = await Monanimal.create({
       tokenId,
@@ -138,9 +160,10 @@ app.post('/api/monanimal/mint', async (req, res) => {
       name,
       traits,
       lore,
-      level: 1,
-      type: 'Normal',
+      level,
+      type,
       experience: 0,
+      image,
     });
 
     await User.findOneAndUpdate(

@@ -39,6 +39,10 @@ const monanimalSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  image: {
+    type: String,
+    required: true,
+  },
 }, {
   timestamps: true,
 });
