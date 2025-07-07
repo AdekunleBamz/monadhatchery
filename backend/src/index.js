@@ -148,12 +148,38 @@ app.get('/api/leaderboard', async (req, res) => {
       { $limit: 10 }
     ]);
 
-    // Format for frontend
-    const leaderboard = aggregation.map(user => ({
-      address: user._id,
-      nftsOwned: user.nftsOwned,
-      totalEvolutions: user.totalEvolutions,
-      loreSubmissions: user.loreSubmissions,
+    // Fetch achievements for each user
+    const leaderboard = await Promise.all(aggregation.map(async user => {
+      const userDoc = await User.findOne({ address: user._id });
+      // Backfill minted count and badges if needed
+      let achievements = userDoc?.achievements || { minted: 0, evolved: 0, fused: 0, lore: 0, badges: [] };
+      let updated = false;
+      if (user.nftsOwned > (achievements.minted || 0)) {
+        achievements.minted = user.nftsOwned;
+        // Re-award badges for minting
+        const thresholds = [1, 5, 10, 25, 50];
+        const badgeName = 'Monanimal Minted';
+        achievements.badges = achievements.badges || [];
+        thresholds.forEach((t) => {
+          const badge = `${badgeName} ${t}`;
+          if (achievements.minted >= t && !achievements.badges.includes(badge)) {
+            achievements.badges.push(badge);
+          }
+        });
+        updated = true;
+      }
+      // Save backfilled achievements if changed
+      if (userDoc && updated) {
+        userDoc.achievements = achievements;
+        await userDoc.save();
+      }
+      return {
+        address: user._id,
+        nftsOwned: user.nftsOwned,
+        totalEvolutions: user.totalEvolutions,
+        loreSubmissions: user.loreSubmissions,
+        achievements
+      };
     }));
 
     res.json(leaderboard);
