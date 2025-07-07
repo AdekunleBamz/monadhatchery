@@ -371,8 +371,10 @@ export default function Home() {
           <div className="container mx-auto flex justify-between items-center">
             <div className="flex items-center gap-4">
               <Image src="/monad.svg" alt="Monad Logo" width={160} height={160} className="mr-2" />
-              <h1 className="text-2xl font-bold">Monad Hatchery</h1>
-              <NetworkStatus />
+              <div className="flex flex-col">
+                <h1 className="text-2xl font-bold">Monad Hatchery</h1>
+                <NetworkStatus />
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <Link href="/leaderboard" className="bg-lime-600 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded transition-colors shadow-md">Leaderboard</Link>

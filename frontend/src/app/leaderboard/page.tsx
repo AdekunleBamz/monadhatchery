@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface LeaderboardEntry {
   address: string;
@@ -43,6 +44,11 @@ export default function LeaderboardPage() {
       {/* Soft vignette effect */}
       <div className="pointer-events-none absolute inset-0 z-0" style={{background: 'radial-gradient(ellipse at center, rgba(163,230,53,0.10) 0%, rgba(10,10,10,0.95) 80%)'}} />
       <div className="max-w-5xl w-full py-12 px-4 z-10 relative">
+        <div className="mb-6">
+          <Link href="/" className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">
+            ← Return to Main Page
+          </Link>
+        </div>
         <h1 className="text-3xl font-bold mb-6 text-center drop-shadow-lg text-lime-300">Leaderboard</h1>
         {loading ? (
           <div className="text-center text-gray-400">Loading...</div>
