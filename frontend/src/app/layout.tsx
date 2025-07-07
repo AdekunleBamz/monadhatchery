@@ -19,8 +19,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/monad.svg" type="image/svg+xml" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/monad-32.png" />
-        <link rel="icon" type="image/png" sizes="64x64" href="/monad-64.png" />
       </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
