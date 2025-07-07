@@ -69,7 +69,7 @@ export default function LeaderboardPage() {
                     <td className="py-2 px-4 text-center text-yellow-300">{entry.loreSubmissions}</td>
                     <td className="py-2 px-4 text-center">
                       {/* Show up to 2 most recent badges, fallback to none */}
-                      {entry.achievements?.badges?.length > 0 ? (
+                      {entry.achievements && Array.isArray(entry.achievements.badges) && entry.achievements.badges.length > 0 ? (
                         entry.achievements.badges.slice(-2).map((badge, i) => (
                           <span key={badge} className="inline-block bg-gradient-to-r from-lime-500 to-blue-400 text-xs text-white font-semibold rounded-full px-2 py-1 mx-1 shadow-md border border-lime-300 animate-pulse">
                             🏅 {badge}
