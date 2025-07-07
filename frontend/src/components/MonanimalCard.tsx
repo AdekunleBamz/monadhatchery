@@ -83,7 +83,7 @@ export const MonanimalCard: React.FC<MonanimalCardProps> = ({ name, level, type,
                       placeholder="Enter custom name..."
                       value={nameInput}
                       onChange={(e) => setNameInput(e.target.value)}
-                      className="text-black px-2 py-1 rounded text-xs w-24"
+                      className="font-bold text-lime-200 bg-gray-900 px-2 py-1 rounded text-xs w-24 placeholder-gray-500 focus:bg-gray-800 focus:text-white shadow-md"
                       maxLength={20}
                       onKeyPress={(e) => {
                         if (e.key === 'Enter') {
@@ -132,7 +132,7 @@ export const MonanimalCard: React.FC<MonanimalCardProps> = ({ name, level, type,
                       placeholder="Enter lore..."
                       value={loreInput}
                       onChange={(e) => setLoreInput(e.target.value)}
-                      className="text-black px-2 py-1 rounded text-xs w-24"
+                      className="font-bold text-lime-200 bg-gray-900 px-2 py-1 rounded text-xs w-24 placeholder-gray-500 focus:bg-gray-800 focus:text-white shadow-md"
                       maxLength={50}
                       onKeyPress={(e) => {
                         if (e.key === 'Enter') {
