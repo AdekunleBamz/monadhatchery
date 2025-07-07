@@ -61,10 +61,10 @@ export const MonanimalCard: React.FC<MonanimalCardProps> = ({ name, level, type,
   };
 
   return (
-    <div className="bg-gray-800 rounded-lg p-6 shadow-lg flex flex-col gap-2">
-      {image && (
+  <div className="bg-gray-800 rounded-lg p-6 shadow-lg flex flex-col gap-2">
+    {image && (
         <div className="relative">
-          <img src={image} alt={name} className="w-full h-48 object-contain mb-2 bg-gray-900 rounded" />
+      <img src={image} alt={name} className="w-full h-48 object-contain mb-2 bg-gray-900 rounded" />
           {evolutionInfo.badge && (
             <div className="absolute top-2 right-2 bg-black bg-opacity-50 rounded-full p-2">
               <span className="text-2xl">{evolutionInfo.badge}</span>
@@ -294,6 +294,6 @@ export const MonanimalCard: React.FC<MonanimalCardProps> = ({ name, level, type,
           Burn NFT
         </button>
       )}
-    </div>
-  );
+  </div>
+); 
 }; 

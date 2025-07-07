@@ -374,7 +374,10 @@ export default function Home() {
               <h1 className="text-2xl font-bold">Monad Hatchery</h1>
               <NetworkStatus />
             </div>
-            <WalletConnect />
+            <div className="flex items-center gap-4">
+              <Link href="/leaderboard" className="bg-lime-600 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded transition-colors shadow-md">Leaderboard</Link>
+              <WalletConnect />
+            </div>
           </div>
         </nav>
         <main className="container mx-auto px-4 py-8">

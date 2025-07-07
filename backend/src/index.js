@@ -72,6 +72,25 @@ function getAnimalImages() {
   return fs.readdirSync(dir).filter(f => f.endsWith('.png') || f.endsWith('.svg'));
 }
 
+// Helper: Check and award achievement badges
+function checkAndAwardAchievements(user, type) {
+  const thresholds = [1, 5, 10, 25, 50];
+  const badgeNames = {
+    minted: 'Monanimal Minted',
+    evolved: 'Monanimal Evolved',
+    fused: 'Monanimal Fused',
+    lore: 'Lore Submitted',
+  };
+  if (!user.achievements) user.achievements = { minted: 0, evolved: 0, fused: 0, lore: 0, badges: [] };
+  user.achievements[type] = (user.achievements[type] || 0) + 1;
+  thresholds.forEach((t) => {
+    const badge = `${badgeNames[type]} ${t}`;
+    if (user.achievements[type] === t && !user.achievements.badges.includes(badge)) {
+      user.achievements.badges.push(badge);
+    }
+  });
+}
+
 // API Routes
 
 // Get user progress
@@ -84,7 +103,14 @@ app.get('/api/progress/:address', async (req, res) => {
       user = await User.create({ address: address.toLowerCase() });
     }
 
-    res.json(user);
+    res.json({
+      address: user.address,
+      points: user.points,
+      progress: user.progress,
+      monanimals: user.monanimals,
+      loreCards: user.loreCards,
+      achievements: user.achievements || { minted: 0, evolved: 0, fused: 0, lore: 0, badges: [] }
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -105,14 +131,32 @@ app.post('/api/progress/update', async (req, res) => {
   }
 });
 
-// Get leaderboard
+// Get leaderboard (combined metrics)
 app.get('/api/leaderboard', async (req, res) => {
   try {
-    const users = await User.find()
-      .sort({ points: -1 })
-      .limit(10)
-      .select('address points');
-    res.json(users);
+    // Aggregate Monanimal data by owner
+    const aggregation = await Monanimal.aggregate([
+      {
+        $group: {
+          _id: '$owner',
+          nftsOwned: { $sum: 1 },
+          totalEvolutions: { $sum: { $ifNull: ['$evolutionStage', 1] } },
+          loreSubmissions: { $sum: { $cond: [ { $ne: ['$lore', ''] }, 1, 0 ] } },
+        }
+      },
+      { $sort: { nftsOwned: -1 } },
+      { $limit: 10 }
+    ]);
+
+    // Format for frontend
+    const leaderboard = aggregation.map(user => ({
+      address: user._id,
+      nftsOwned: user.nftsOwned,
+      totalEvolutions: user.totalEvolutions,
+      loreSubmissions: user.loreSubmissions,
+    }));
+
+    res.json(leaderboard);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -208,6 +252,11 @@ app.post('/api/monanimal/mint', async (req, res) => {
       { new: true, upsert: true }
     );
 
+    // Award mint achievement
+    const user = await User.findOne({ address: owner.toLowerCase() });
+    checkAndAwardAchievements(user, 'minted');
+    await user.save();
+
     res.json(monanimal);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -226,6 +275,13 @@ app.post('/api/monanimal/evolve', async (req, res) => {
 
     if (!monanimal) {
       return res.status(404).json({ error: 'Monanimal not found' });
+    }
+
+    // Award evolve achievement
+    const user = await User.findOne({ address: monanimal.owner });
+    if (user) {
+      checkAndAwardAchievements(user, 'evolved');
+      await user.save();
     }
 
     res.json(monanimal);
@@ -303,6 +359,11 @@ app.post('/api/monanimal/fuse', async (req, res) => {
       { $push: { monanimals: newTokenId } },
       { new: true, upsert: true }
     );
+
+    // Award fuse achievement
+    const user = await User.findOne({ address: owner.toLowerCase() });
+    checkAndAwardAchievements(user, 'fused');
+    await user.save();
 
     res.json(fusedMonanimal);
   } catch (error) {

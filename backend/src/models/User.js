@@ -21,6 +21,16 @@ const userSchema = new mongoose.Schema({
   loreCards: [{
     type: Number,
   }],
+  achievements: {
+    type: Object,
+    default: {
+      minted: 0,
+      evolved: 0,
+      fused: 0,
+      lore: 0,
+      badges: []
+    }
+  },
 }, {
   timestamps: true,
 });
