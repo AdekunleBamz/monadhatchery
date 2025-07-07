@@ -6,7 +6,7 @@ export default function VersionUpdateNotice() {
 
   useEffect(() => {
     let currentHash = '';
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     // Check for updates every 30 seconds
     async function checkForUpdate() {
       try {
