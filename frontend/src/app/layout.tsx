@@ -8,9 +8,6 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Monad Hatchery",
   description: "Evolve and forge your Monanimals in this unique NFT game",
-  icons: {
-    icon: '/monad.svg',
-  },
 };
 
 export default function RootLayout({
