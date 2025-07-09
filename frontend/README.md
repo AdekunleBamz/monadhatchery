@@ -37,13 +37,39 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 # Monad Hatchery
 
-## Monad Mission 5 Submission
+Live App: [https://monadhatchery.vercel.app/](https://monadhatchery.vercel.app/)
 
-- This project is open source and non-commercial, built for Monad Mission 5.
-- No financial gain is sought; all code and assets are for community and educational use.
-- Uses Monad lore (Monanimals) and includes novel NFT mechanics (fusion, lore evolution).
-- Submit your project here: [Mission 5 Submission Form](https://tally.so/r/mDE6bX)
+Monad Hatchery is a web-based tool that enables users to mint, evolve, and fuse generative Monanimal NFTs on the Monad blockchain. The app provides a user-friendly interface for interacting with NFTs, features a dynamic leaderboard to showcase top community members, and includes additional engagement options like achievements, badges, and lore voting. Monad Hatchery makes it easy for anyone to explore, create, and participate in a gamified NFT ecosystem, blending creativity, competition, and community storytelling.
+
+## Features
+- **Mint Monanimal NFTs:** Create unique, generative SVG Monanimal NFTs on Monad Testnet.
+- **Evolve & Fuse:** Evolve your Monanimals or fuse two to create a new one with inherited traits.
+- **Lore System:** Add and vote on lore for your NFTs, contributing to the community-driven story.
+- **Achievements & Badges:** Earn badges for minting, evolving, fusing, and lore submissions.
+- **Leaderboard:** See top users ranked by NFTs owned, evolutions, fusions, and lore activity.
+- **Wallet Integration:** Connect your wallet to interact with the Monad blockchain.
+- **Modern UI:** Built with Next.js, Tailwind CSS, and responsive design for all devices.
+
+## Getting Started (Local Development)
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+- `frontend/` — Next.js app (UI, wallet, leaderboard, etc.)
+- `backend/` — Node.js/Express API (user/NFT data, aggregation, etc.)
+- `contracts/` — Solidity smart contracts for Monanimal NFTs and game logic
 
 ## Security Notice
-- Do NOT commit secrets or credentials to the repository.
+- **Do NOT commit secrets or credentials to the repository.**
 - All sensitive data (MongoDB URI, private keys, etc.) must be stored in environment variables and .env files, which are gitignored by default.
+
+## License
+This project is open source and non-commercial, built for Monad Mission 5. All code and assets are for community and educational use.
