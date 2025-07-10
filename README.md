@@ -66,6 +66,22 @@ npm run dev
 - **Wallet Integration:** Connect your wallet to interact with the Monad blockchain.
 - **Modern UI:** Built with Next.js, Tailwind CSS, and responsive design for all devices.
 
+## Screenshots
+
+Below are some screenshots showcasing Monad Hatchery in action:
+
+**Minting Monanimal NFTs**
+![Minting Monanimal NFTs](frontend/public/Screenshot1.png)
+
+**Evolving and Fusing Monanimals**
+![Evolving and Fusing Monanimals](frontend/public/Screenshot2.png)
+
+**Leaderboard and Achievements**
+![Leaderboard and Achievements](frontend/public/Screenshot3.png)
+
+**Lore Voting and Community Features**
+![Lore Voting and Community Features](frontend/public/Screenshot4.png)
+
 ## Getting Started (Local Development)
 
 1. Install dependencies:
