@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   title: "Monad Hatchery",
   description: "Evolve and forge your Monanimals in this unique NFT game",
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' }
+    ],
   },
 };
 
