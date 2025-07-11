@@ -9,11 +9,7 @@ export const metadata: Metadata = {
   title: "Monad Hatchery",
   description: "Evolve and forge your Monanimals in this unique NFT game",
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.png', type: 'image/png', sizes: '32x32' },
-    ],
-    apple: '/favicon.png',
+    icon: '/favicon.ico',
   },
 };
 
@@ -24,7 +20,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* Removed manual <link rel="icon" ... /> tags, Next.js will handle favicon automatically */}
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
