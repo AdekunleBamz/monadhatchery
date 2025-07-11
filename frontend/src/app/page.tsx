@@ -1,4 +1,5 @@
 'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useChainId } from 'wagmi';
@@ -370,7 +371,14 @@ export default function Home() {
         <nav className="bg-gray-800 p-4 shadow-lg border-2 border-yellow-400">
           <div className="container mx-auto flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <img src="/logo.png" alt="Monad Logo" width={160} height={160} className="mr-2" />
+              <Image 
+                src="/logo.png" 
+                alt="Monad Logo" 
+                width={160} 
+                height={160} 
+                className="mr-2"
+                priority
+              />
               <div className="flex flex-col">
                 <h1 className="text-2xl font-bold">Monad Hatchery</h1>
                 <NetworkStatus />

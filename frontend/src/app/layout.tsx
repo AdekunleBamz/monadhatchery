@@ -8,6 +8,13 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Monad Hatchery",
   description: "Evolve and forge your Monanimals in this unique NFT game",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
@@ -17,10 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="icon" href="/logo.png" type="image/png" />
-      </head>
+      {/* Removed manual <link rel="icon" ... /> tags, Next.js will handle favicon automatically */}
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
