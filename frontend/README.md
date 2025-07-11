@@ -41,6 +41,22 @@ Live App: [https://monadhatchery.vercel.app/](https://monadhatchery.vercel.app/)
 
 Monad Hatchery is a web-based tool that enables users to mint, evolve, and fuse generative Monanimal NFTs on the Monad blockchain. The app provides a user-friendly interface for interacting with NFTs, features a dynamic leaderboard to showcase top community members, and includes additional engagement options like achievements, badges, and lore voting. Monad Hatchery makes it easy for anyone to explore, create, and participate in a gamified NFT ecosystem, blending creativity, competition, and community storytelling.
 
+## Cloning the Project
+To clone this project and get started locally:
+
+```bash
+# Clone the repository
+ git clone https://github.com/AdekunleBamz/monadhatchery.git
+
+# Change into the project directory
+cd monadhatchery
+
+# Install dependencies and run the frontend
+cd frontend
+npm install
+npm run dev
+```
+
 ## Features
 - **Mint Monanimal NFTs:** Create unique, generative SVG Monanimal NFTs on Monad Testnet.
 - **Evolve & Fuse:** Evolve your Monanimals or fuse two to create a new one with inherited traits.

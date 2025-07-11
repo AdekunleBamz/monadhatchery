@@ -3,7 +3,10 @@ import MonanimalNFTAbi from '@/contracts/MonanimalNFT.abi.json';
 import { createAvatar } from '@dicebear/core';
 import { bottts } from '@dicebear/collection';
 
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4001/api';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 
+  (process.env.NODE_ENV === 'production' 
+    ? 'https://monadhatchery-backend.onrender.com/api'
+    : 'http://localhost:4001/api');
 
 // Updated Monad testnet configuration with correct details
 export const MONAD_CHAIN_ID = process.env.NEXT_PUBLIC_MONAD_CHAIN_ID || 10143;

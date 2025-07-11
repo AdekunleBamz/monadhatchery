@@ -38,6 +38,24 @@ const PORT = process.env.PORT || 4001;
 app.use(cors());
 app.use(express.json());
 
+// Add this friendly root route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Monad Hatchery Backend API',
+    version: '1.0.0',
+    status: 'running',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      leaderboard: '/api/leaderboard',
+      userProgress: '/api/progress/:address',
+      metadata: '/api/metadata/:tokenId',
+      mint: '/api/monanimal/mint',
+      updateProgress: '/api/progress/update'
+    },
+    documentation: 'Visit specific endpoints to interact with the API'
+  });
+});
+
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI;
 
