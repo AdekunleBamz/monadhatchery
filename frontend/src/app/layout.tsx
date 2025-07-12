@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   description: "Evolve and forge your Monanimals in this unique NFT game",
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' }
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
     ],
   },
 };
